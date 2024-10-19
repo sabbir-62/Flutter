@@ -13,9 +13,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.amber,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.amber,
-        )
       ),
       darkTheme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
@@ -29,8 +26,19 @@ class HomeActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Title")),
-      body: const Center(child: Text("Hello")),
+      appBar: AppBar(
+        title: const Text("Title"),
+        titleSpacing: 10,
+        toolbarHeight: 60,
+        toolbarOpacity: 1,
+        elevation: 6,
+        backgroundColor: Colors.teal,
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: (){}, icon: const Icon(Icons.comment)),
+          IconButton(onPressed: (){}, icon: const Icon(Icons.email))
+        ],
+      )
     );
   }
 }
