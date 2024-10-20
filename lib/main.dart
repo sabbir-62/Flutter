@@ -29,7 +29,6 @@ class HomeActivity extends StatelessWidget {
       SnackBar(content: Text(message))
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,12 +74,42 @@ class HomeActivity extends StatelessWidget {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const [
-            DrawerHeader(child: Text("Sabbir")),
-            ListTile(title: Text("Home")),
-            ListTile(title: Text("Home")),
-            ListTile(title: Text("Home"))
+          children: [
+            DrawerHeader(
+                padding: const EdgeInsets.all(0),
+                child: UserAccountsDrawerHeader(
+                    decoration: const BoxDecoration(color: Colors.teal),
+                    accountName: const Text("Sabbir"),
+                    accountEmail: const Text("sabbir.hossain.se62@gmail.com"),
+                    currentAccountPicture: Image.network("https://cdn-icons-png.flaticon.com/512/7077/7077313.png"),
+                )
+            ),
+            ListTile(
+                leading: const Icon(Icons.home),
+                title: const Text("Home"),
+                onTap: (){mySnakeBar("This is home", context);},
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text("Profile"),
+              onTap: (){mySnakeBar("This is profile", context);},
+            ),
+            ListTile(
+              leading: const Icon(Icons.mail),
+              title: const Text("Contact"),
+              onTap: (){mySnakeBar("This is contact", context);},
+            )
           ],
+        ),
+      ),
+      body: Container(
+        child: Text("Container"),
+        alignment: Alignment.center,
+        height: 250,
+        width: 250,
+        decoration: BoxDecoration(
+            color: Colors.grey,
+            border: Border.all(color: Colors.deepOrange, width: 5)
         ),
       ),
     );
