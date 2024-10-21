@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() {
   runApp(const MyApp());
@@ -103,13 +104,21 @@ class HomeActivity extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: Text("Container"),
         alignment: Alignment.center,
-        height: 250,
-        width: 250,
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            border: Border.all(color: Colors.deepOrange, width: 5)
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.cyan,
+            ),
+            Container(
+              height: 100,
+              width: 100,
+              color: Colors.cyan,
+            )
+          ],
         ),
       ),
     );
