@@ -31,7 +31,7 @@ class InputForm extends StatelessWidget{
           padding: const EdgeInsets.all(20),
           child: ElevatedButton(
               onPressed: (){mySnakeBar("This is submit button", context);},
-              child: const Text("Submit")
+              child: const Text("Submit Now")
           )
         )
       ],
