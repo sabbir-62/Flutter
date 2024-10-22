@@ -75,11 +75,18 @@ class HomeActivity extends StatelessWidget {
       ),
       drawer: Drawer(
         child: ListView(
-          children: const [
-            DrawerHeader(child: Text("Sabbir")),
-            ListTile(title: Text("Home")),
-            ListTile(title: Text("Home")),
-            ListTile(title: Text("Home"))
+          children: [
+            DrawerHeader(
+                padding: const EdgeInsets.all(0),
+                child: UserAccountsDrawerHeader(
+                  decoration: const BoxDecoration(color: Colors.green),
+                  accountName: const Text("Sabbir Hossain"),
+                  accountEmail: const Text("sabbir.hossain.se62@gmail.com"),
+                  currentAccountPicture: Image.network("https://images.app.goo.gl/tDKsHeUpTgDNNWrn7"),
+            )),
+            ListTile(leading: const Icon(Icons.home), title: const Text("Home"), onTap: (){ mySnakeBar("home", context);}),
+            ListTile(leading: const Icon(Icons.message), title: const Text("Contact"), onTap: (){ mySnakeBar("contact", context);}),
+            ListTile(leading: const Icon(Icons.person), title: const Text("Profile"), onTap: (){ mySnakeBar("profile", context);})
           ],
         ),
       ),
