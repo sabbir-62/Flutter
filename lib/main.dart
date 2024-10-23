@@ -1,5 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:new_app/widgets/alert_dialog.dart';
+import 'package:new_app/widgets/appbar.dart';
+import 'package:new_app/widgets/bottom_navigation_bar.dart';
+import 'package:new_app/widgets/box.dart';
+import 'package:new_app/widgets/buttons.dart';
+import 'package:new_app/widgets/drawer.dart';
+import 'package:new_app/widgets/floating_action_button.dart';
+import 'package:new_app/widgets/form.dart';
+import 'package:new_app/widgets/snake_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,69 +34,21 @@ class MyApp extends StatelessWidget {
 class HomeActivity extends StatelessWidget {
   const HomeActivity({super.key});
 
-  mySnakeBar(message, context){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message))
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Title"),
-        titleSpacing: 10,
-        toolbarHeight: 60,
-        toolbarOpacity: 1,
-        elevation: 6,
-        backgroundColor: Colors.teal,
-        actions: [
-          IconButton(onPressed: (){mySnakeBar("Hello, I am Search", context);}, icon: const Icon(Icons.search)),
-          IconButton(onPressed: (){mySnakeBar("Hello, I am Comment", context);}, icon: const Icon(Icons.comment)),
-          IconButton(onPressed: (){mySnakeBar("Hello, I am Email", context);}, icon: const Icon(Icons.email))
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 10,
-        onPressed: (){
-          mySnakeBar("I am floating action button", context);
-        },
-        backgroundColor: Colors.teal,
-        child: const Icon(Icons.add),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Contact"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-        ],
-        onTap: (int index){
-          if(index == 0){
-            mySnakeBar("I am home", context);
-          }
-          if(index == 1){
-          mySnakeBar("I am contact", context);
-          }
-          if(index == 2){
-            mySnakeBar("I am profile", context);
-          }
-        },
-      ),
-      drawer: Drawer(
-        child: ListView(
+      appBar: buildAppBar(context, mySnakeBar),
+      floatingActionButton: buildFloatingActionButton(context, mySnakeBar),
+      bottomNavigationBar: buildBottomNavigationBar(context, mySnakeBar),
+      drawer: buildDrawer(context, mySnakeBar),
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            DrawerHeader(
-                padding: const EdgeInsets.all(0),
-                child: UserAccountsDrawerHeader(
-                  decoration: const BoxDecoration(color: Colors.green),
-                  accountName: const Text("Sabbir Hossain"),
-                  accountEmail: const Text("sabbir.hossain.se62@gmail.com"),
-                  currentAccountPicture: Image.network("https://images.app.goo.gl/tDKsHeUpTgDNNWrn7"),
-            )),
-            ListTile(leading: const Icon(Icons.home), title: const Text("Home"), onTap: (){ mySnakeBar("home", context);}),
-            ListTile(leading: const Icon(Icons.message), title: const Text("Contact"), onTap: (){ mySnakeBar("contact", context);}),
-            ListTile(leading: const Icon(Icons.person), title: const Text("Profile"), onTap: (){ mySnakeBar("profile", context);})
+             const Box(), // Use the FirstRow widget
+             const Buttons(mySnakeBar: mySnakeBar, myAlertDialog: myAlertDialog), // Use the SecondRow widget
+             InputForm(mySnakeBar: mySnakeBar, mySnackBar: (String , BuildContext ) {  },)
           ],
         ),
       ),
