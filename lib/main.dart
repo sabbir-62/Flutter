@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:new_app/widgets/alert_dialog.dart';
 import 'package:new_app/widgets/appbar.dart';
 import 'package:new_app/widgets/bottom_navigation_bar.dart';
 import 'package:new_app/widgets/box.dart';
 import 'package:new_app/widgets/buttons.dart';
+import 'package:new_app/widgets/custom_listview.dart';
 import 'package:new_app/widgets/drawer.dart';
 import 'package:new_app/widgets/floating_action_button.dart';
 import 'package:new_app/widgets/form.dart';
@@ -41,15 +40,19 @@ class HomeActivity extends StatelessWidget {
       floatingActionButton: buildFloatingActionButton(context, mySnakeBar),
       bottomNavigationBar: buildBottomNavigationBar(context, mySnakeBar),
       drawer: buildDrawer(context, mySnakeBar),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-             const Box(), // Use the FirstRow widget
-             const Buttons(mySnakeBar: mySnakeBar, myAlertDialog: myAlertDialog), // Use the SecondRow widget
-             InputForm(mySnakeBar: mySnakeBar, mySnackBar: (String , BuildContext ) {  },)
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: Column(
+            children: [
+              const Box(),
+              const Buttons(mySnakeBar: mySnakeBar, myAlertDialog: myAlertDialog),
+              InputForm(mySnakeBar: mySnakeBar, mySnackBar: (String, BuildContext) {}),
+              SizedBox(
+                child: CustomListView(),
+              ),
+            ],
+          )
         ),
       ),
     );
